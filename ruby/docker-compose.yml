@@ -1,0 +1,17 @@
+version: "3.9"
+
+services: 
+  api-retry-ruby:
+    image: api-retry-ruby:latest
+    build: 
+      context: .
+      args: 
+        - APP_NAME=api-retry-ruby
+    container_name: api-retry-ruby
+    volumes: 
+      - .:/usr/src/api-retry-ruby
+    environment:
+      - HTTP_MAX_RETRIES=3
+      - HTTP_CONN_TIMEOUT_MS=3000
+      - HTTP_SOCKET_TIMEOUT_MS=30000
+
